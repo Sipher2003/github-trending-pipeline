@@ -52,7 +52,7 @@ def fetch_trending_repos_for_day(target_date=None):
         }
 
         producer.send(KAFKA_TOPIC, value=message)
-        print(f"  ✅ Sent: {idx}. {message['name']} ({message['stars']}⭐)")
+        print(f" Sent: {idx}. {message['name']} ({message['stars']})")
 
     producer.flush()
     print(f"[{datetime.utcnow()}] Done: {len(items)} repos sent\n")
