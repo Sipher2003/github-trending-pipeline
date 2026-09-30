@@ -19,7 +19,7 @@ def fetch_trending_repos_for_day(target_date=None):
     end = start + timedelta(days=1)
 
     # Use created:YYYY-MM-DD..YYYY-MM-DD for repos created that day
-    query = f"pushed:{start.strftime('%Y-%m-%d')}..{end.strftime('%Y-%m-%d')}"
+    query = f"created:{start.strftime('%Y-%m-%d')}..{end.strftime('%Y-%m-%d')}"
 
     params = {
         "q": query,
