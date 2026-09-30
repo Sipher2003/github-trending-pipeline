@@ -1,4 +1,4 @@
-KAFKA_BROKER = "65.1.147.84:9092"
+KAFKA_BROKER = ":9092"
 KAFKA_TOPIC = "github-trending"
 GITHUB_API_URL = "https://api.github.com/search/repositories"
 AWS_REGION = "ap-south-1"
