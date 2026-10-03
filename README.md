@@ -1,6 +1,6 @@
 # GitHub Trending Data Pipeline
 
-A real-time data pipeline that ingests newly-created, high-momentum GitHub repositories, streams them through Apache Kafka, lands them in a data lake on Amazon S3, and makes them queryable with SQL via AWS Glue and Athena.
+A real-time data pipeline on AWS that ingests newly-created, 1000+ high-momentum GitHub repositories in JSON format, streams them through Apache Kafka, lands them in a data lake on Amazon S3, and makes them queryable with SQL via AWS Glue and Athena.
 
 ---
 
@@ -98,7 +98,7 @@ ORDER BY avg_stars DESC;
 
 ## Design Notes & Tradeoffs
 
-- **Why Kafka for this scale?** Honestly, at 10 records/hour, a direct write to S3 (e.g., via a scheduled Lambda) would be simpler and cheaper. Kafka was used here deliberately to learn streaming architecture — producer/consumer decoupling, buffering, and the operational patterns that matter once ingestion volume, multiple consumers, or replay requirements justify it.
+
 - **Why "created date + stars" instead of true trending?** GitHub's public API has no endpoint for star-velocity (stars gained per day). Filtering by recent creation date and sorting by star count is a defensible proxy that surfaces genuinely fresh, high-momentum projects without scraping GitHub's HTML trending page.
 - **EC2 public IP changes on every stop/start.** This project intentionally doesn't use an Elastic IP to keep it within Free Tier cost boundaries — `advertised.listeners` in `server.properties` needs updating after each restart.
 
